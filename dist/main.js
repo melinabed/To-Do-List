@@ -1,0 +1,1 @@
+(()=>{"use strict";(()=>{const e=document.querySelector("#content"),t=document.createElement("div");t.classList.add("page-content");const n=document.createElement("div");n.textContent="What's cracking cuhhh",t.appendChild(n),e.appendChild(t)})()})();
