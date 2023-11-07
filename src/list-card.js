@@ -1,31 +1,60 @@
+import homeContent from "./content";
 
-const myList = [];
+const createNewList = () => {
+    const content = document.querySelector('#content');
+    const myList = [];
 
-function newList(title, notes, details, checkList) {
+
+function List(title, notes, details, listType) {
     this.title = title;
     this.notes = notes;
     this.details = details;
-    this.checkList = checkList;
+    this.listType = listType;
 }
 
 function render() {
-    let listCard = document.querySelector('#content');
-    listCard.innerHTML = "";
+    let listEl = document.querySelector('#cards');
+    listEl.innerHTML = "";
     for (let i = 0; i < myList.length; i++) {
-        let list = myList[i];
-        let listEl = document.createElement('div');
-        listEl.setAttribute('class', 'list-card');
-        listEl.innerHTML = `
-        <div class="card-header">
-        <h3 class="title>${list.title}</h3>
-        <h5 class="notes>${list.notes}</h5>
-        </div>
-        <div class="card-body">
-        <h3 class="title>${list.details}</h3>
-        <h5 class="notes>${list.checkList}</h5>`;
-        listCard.appendChild(listEl);
+        let card = myList[i];
+        let cardEl = document.createElement('div');
+        cardEl.setAttribute('class', 'card-info');
+        cardEl.innerHTML = `
+            <div class="card-header">
+            <h3 class="title">${card.title}</h3>
+            </div>
+            <div class="card-body">
+            <p>${card.notes}</p>`;
+        listEl.appendChild(cardEl);
     }
 }
-function addNewList() {
-    let title = document.querySelector('#title').value
+function removeList(index) {
+    myList.splice(index, 1);
+    render();
 }
+
+function addNewList() {
+    let title = document.querySelector('#title').value;
+    let notes = document.querySelector('#notes').value;
+    let details = document.querySelector('#details').value;
+    let listType = document.querySelector('#list-type').value;
+    let addList = new List(title, notes, details, listType);
+    myList.push(addList);
+    render();
+}
+
+let newList = document.querySelector('#new');
+newList.addEventListener('click', function() {
+    let form = document.querySelector('#list-info');
+    form.style.display = 'block';
+})
+document.querySelector('#submit').addEventListener('click', function(event) {
+    event.preventDefault();
+    addNewList();
+})
+
+
+
+}
+export default createNewList;
+

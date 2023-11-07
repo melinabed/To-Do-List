@@ -1,3 +1,5 @@
+import createNewList from "./list-card";
+
 const homeContent = () => {
     const content = document.querySelector('#content');
     const pageContent = document.createElement('div');
@@ -7,9 +9,15 @@ const homeContent = () => {
     heading.textContent = "To-Do-List";
     pageContent.appendChild(heading);
 
+    const addNew = document.createElement('button');
+    addNew.setAttribute('id', 'new');
+    addNew.textContent = '+';
+    pageContent.appendChild(addNew);
+
     //Creates a to-do-list form for the page content
     const list = document.createElement('form');
     list.setAttribute('id', 'list-info');
+    list.style.display = 'none';
     pageContent.appendChild(list);
 
     
@@ -81,6 +89,16 @@ const homeContent = () => {
     label3.setAttribute('for', 'option3');
     listType.appendChild(label3);
 
+    const add = document.createElement('input');
+    add.setAttribute('id', 'submit');
+    add.type = 'submit';
+    add.value = 'Add List';
+    list.appendChild(add);
+
+
+    const div = document.createElement('div');
+    div.setAttribute('id', 'cards');
+    pageContent.appendChild(div);
 
     content.appendChild(pageContent);
 }
