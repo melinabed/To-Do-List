@@ -10,10 +10,10 @@ const sidebar = () => {
     const div4 = document.createElement('div');
 
     //Assign each div an id
-    div1.setAttribute('id', 'all-button');
-    div2.setAttribute('id', 'today-button');
-    div3.setAttribute('id', 'week-button');
-    div4.setAttribute('id', 'completed-button');
+    div1.setAttribute('id', 'all');
+    div2.setAttribute('id', 'today');
+    div3.setAttribute('id', 'week');
+    div4.setAttribute('id', 'completed');
 
     //Attach each div in tab class
     div1.classList.add('tab');
@@ -32,6 +32,23 @@ const sidebar = () => {
     content.appendChild(div2);
     content.appendChild(div3);
     content.appendChild(div4);
-    
+
+    //Creates class list for the lists
+    const lists = document.createElement('div');
+    lists.classList.add('lists');
+    content.appendChild(lists);
+
+    //Applies the header to the list
+    const myListHeader = document.createElement('h3');
+    myListHeader.setAttribute('id', 'list-header');
+    myListHeader.textContent = "My Lists";
+    lists.appendChild(myListHeader);
+
+    //Creates a card for the lists to inputed into
+    const listCard = document.createElement('div');
+    listCard.setAttribute('id', 'list-card');
+    lists.appendChild(listCard);
+
+
 };
 export default sidebar;
