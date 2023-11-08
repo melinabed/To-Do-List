@@ -1,16 +1,16 @@
 import homeContent from "./content";
+import createNewDetail from "./details";
 
 const createNewList = () => {
     const content = document.querySelector('#content');
     const myList = [];
 
 
-function List(title, notes, details, listType) {
+function List(title, notes) {
     this.title = title;
     this.notes = notes;
-    this.details = details;
-    this.listType = listType;
 }
+
 
 function render() {
     let listEl = document.querySelector('#cards');
@@ -21,13 +21,16 @@ function render() {
         cardEl.setAttribute('class', 'card-info');
         cardEl.innerHTML = `
             <div class="card-header">
-            <h3 class="title">${card.title}</h3>
+                <h3 class="title">${card.title}</h3>
             </div>
             <div class="card-body">
-            <p>${card.notes}</p>`;
+                <p>${card.notes}</p>
+            </div>`;
         listEl.appendChild(cardEl);
     }
 }
+
+
 function removeList(index) {
     myList.splice(index, 1);
     render();
@@ -36,11 +39,10 @@ function removeList(index) {
 function addNewList() {
     let title = document.querySelector('#title').value;
     let notes = document.querySelector('#notes').value;
-    let details = document.querySelector('#details').value;
-    let listType = document.querySelector('#list-type').value;
-    let addList = new List(title, notes, details, listType);
+    let addList = new List(title, notes);
     myList.push(addList);
     render();
+    createNewDetail();
 }
 
 let newList = document.querySelector('#new');
@@ -52,8 +54,6 @@ document.querySelector('#submit').addEventListener('click', function(event) {
     event.preventDefault();
     addNewList();
 })
-
-
 
 }
 export default createNewList;

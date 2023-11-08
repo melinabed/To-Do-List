@@ -53,6 +53,16 @@ const homeContent = () => {
     details.textContent = 'Details';
     list.appendChild(details);
 
+    const detailForm = document.createElement('div');
+    detailForm.setAttribute('id', 'detail-info');
+    detailForm.style.display = 'none';
+    details.appendChild(detailForm);
+
+    const date = document.createElement('input');
+    date.setAttribute('id', 'date');
+    date.type = 'date';
+    detailForm.appendChild(date);
+
 
     //Creates another form that lists the type of list
     const listType = document.createElement('form');
