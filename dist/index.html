@@ -7,7 +7,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="content"></div>
+    <div class="content">
+        <div class="form-heading">
+            <h1>Add New Project</h1>
+        </div>
+        <div class="to-do-heading">
+            <h1>Current todos</h1>
+        </div>
+        <div class="form">
+            <button class="add-todo-button">Add New</button>
+            <div id="add-todo-form" style="display: none;">
+                <form id="add-todo">
+                    <label for="project">Project</label>
+                    <select name="project" id="project">
+                        <option value="default-project">Default Project</option>
+                        <option value="create-new-project">Create New</option>
+                    </select>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" placeholder="take out trash">
+                    <label for="duedate">Due Date</label>
+                    <input type="date" id="duedate" name="duedate">
+                    <label for="priority">Priority</label>
+                    <select name="priority" id="priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <label for="list-type">List Type</label>
+                    <select name="list-type" id="list-type">
+                        <option value="reminders">Reminders</option>
+                        <option value="work">Work</option>
+                        <option value="school">School</option>
+                    </select>
+                    <label for="notes">Notes</label>
+                    <ul class="notes-ul"></ul>
+                    </form>
+                    <input type="text" id="add-notes" name="add-notes" placeholder="check house for more">
+                    <button class="add-notes">Add notes to list</button>
+                    <br>
+                    <button type="submit" class="submit-button">Add</button>
+                    <button type="reset" class="reset-button">Reset Form</button>
+            </div>
+        </div>
+        <div class="card">
+        </div>
+    </div>
     <script src="./main.js"></script>
     
 </body>

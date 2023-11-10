@@ -3,7 +3,7 @@
 export const projectLoad = () => {
     console.log('testing');
     let projectArray = [];
-    console.log('pushing something');
+    console.log('pushing title of project');
     let projectTitle = 'Default project';
     projectArray.push({projectTitle});
     console.log(projectArray);
