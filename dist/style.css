@@ -1,0 +1,7 @@
+.content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.to-do-heading {
+    grid-area: 1/1/3/2;
+}
