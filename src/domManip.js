@@ -56,3 +56,38 @@ export function clearForm() {
     }
     document.getElementById('add-todo').reset();
 }
+
+export function displayToDo() {
+
+    //Check and clear current display DOM, if any
+    const removeDivs = document.querySelectorAll('.card');
+    console.log('show me the node count of current DOM card divs...', removeDivs);
+    for (let i = 0; i < removeDivs.length; i++) {
+        removeDivs[i].remove();
+    }
+
+    //Create the display card for the display DOM
+    console.log('display to screen');
+    const projects = document.querySelector('.projects');
+    const card = document.createElement('div');
+    card.classList.add('card');
+    projects.appendChild(card);
+
+    //Gather data from local backend storage and initialize
+    let title = localStorage.getItem('Title');
+    let listType = localStorage.getItem('List-Type');
+    let dueDate = localStorage.getItem('DueDate');
+    let priority = localStorage.getItem('Priority');
+    let notes = localStorage.getItem('Notes');
+
+    //Place data in local temp array and loop over key/value and display to DOM
+    let _displayArray = {title, notes, dueDate, priority, listType};
+    console.log(_displayArray);
+
+    for (let key in _displayArray) {
+        console.log(`${key}: ${_displayArray[key]}`);
+        const para = document.createElement('p');
+        para.textContent = (`${key}: ${_displayArray[key]}`);
+        card.appendChild(para);
+    }
+}
