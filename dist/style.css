@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
 .content {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -8,11 +14,14 @@
 
 h1 {
     background-color: #E7717D;
+    font-size: 48px;
+    height: 70px;
+    padding: 25px;
 }
 
 
 
-/*Styling for the form and objects within*/
+/*Styling for the form and items within*/
 .form {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -36,26 +45,37 @@ form#add-todo {
 
 
 /*Styling for the inputs and labels*/
-select#project, 
-input#title,
-input#duedate,
-select#priority,
-select#list-type {
+
+input {
     height: 20px;
     max-width: 400px;
+    padding: 10px;
+    border-color: #C2CAD0;
+    border-radius: 2px;
 }
 input#add-notes {
-    max-width: 400px;
-    grid-area: 3/1/4/2;
+    grid-area: 3/1/4/3;
+
 }
+select {
+    height: 25px;
+    padding: 10px;
+    border-color: white;
+    background-color: white;
+    border-radius: 2px;
+}
+
 label {
     color: rgb(255, 255, 255);
     font-size: 32px;
 }
 
 li {
-    color: rgb(255, 255, 255);
+    list-style: none;
+    color: rgb(0, 0, 0);
+    font-weight: 100;
 }
+
 
 
 
@@ -79,9 +99,9 @@ button.reset-button {
     grid-area: 1/1/2/2;
 }
 button.add-notes {
-    height: 50px;
+    height: 43px;
     width: 60px;
-    grid-area: 3/2/4/3;
+    grid-area: 3/3/4/4;
 }
 
 

@@ -10,6 +10,8 @@ export function displayDefaultProject() {
 
 export function displayForm() {
     document.getElementById('add-todo-form').style.display = "";
+    const button = document.querySelector('.add-todo-button');
+    button.style.visibility = 'hidden';
 }
 
 export function addNotesList() {
