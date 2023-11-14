@@ -59,7 +59,6 @@ input#add-notes {
 }
 select {
     height: 25px;
-    padding: 10px;
     border-color: white;
     background-color: white;
     border-radius: 2px;

@@ -1,5 +1,6 @@
 import { compareAsc, format, parseISO, startOfToday } from 'date-fns';
 import { clearForm } from './domManip';
+import { saveToDoToLocal } from './manage-local-storage.js';
 
 //Creating an array for the ToDo
 let toDoArray = [];
@@ -12,12 +13,12 @@ export const createToDo = () => {
 
     //Check to see if empty fields exist
     if (title == "" || dueDate == "") {
-        alert('Title, notes, and due date are required fields, please try again')
+        alert('Title, Notes, and Due Date are required fields, please try again!')
         return;
     }
     //Check to see if pre-date was entered
     if (parseISO(dueDate) < startOfToday()) {
-        alert('you have entered a date that has already passed! please enter a date greater than that.')
+        alert('You have entered a date that has already passed! Please enter a date greater than that.')
         console.log('due date', parseISO(dueDate));
         console.log('date now', startOfToday());
         return;
@@ -40,6 +41,9 @@ export const createToDo = () => {
     //TODO: remove below two lines if array is not needed
     toDoArray.push({title, notes, dueDate, priority, listType});
     console.log(toDoArray);
+
+    //Call storage module and push object to local storage
+    saveToDoToLocal({title, notes, dueDate, priority, listType});
 
     //Reset the form after successful submission
     clearForm();
