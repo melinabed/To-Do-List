@@ -24,7 +24,7 @@ export const createToDo = () => {
         return;
     }
     //Loop over the nodelist for notes list items from the DOM and format to string
-    const nodeListNotes = document.querySelectorAll('li');
+    const nodeListNotes = document.querySelectorAll('.form-li');
     let notesListArray = [];
     for (let i = 0; i < nodeListNotes.length; i++) {
 
@@ -43,12 +43,12 @@ export const createToDo = () => {
     console.log(toDoArray);
 
     //Call storage module and push object to local storage
-    saveToDoToLocal({title, notes, dueDate, priority, listType});
+    saveToDoToLocal({title, dueDate, priority, listType}, notes);
 
     //Reset the form after successful submission
     clearForm();
 
-    return {title, notes, dueDate, priority, listType};
+    return {title, dueDate, priority, listType}, notes;
 
 }
     

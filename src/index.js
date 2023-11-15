@@ -1,13 +1,14 @@
 //import seperate modules
 import { projectLoad } from "./projectLoad";
-import { displayDefaultProject, displayForm, addNotesList, clearForm } from "./domManip";
+import { displayDefaultProject, displayForm, addNotesList, clearForm, displayToDo } from "./domManip";
 import { createToDo } from "./createToDo";
 
 
 //Call the project load on first land
 projectLoad();
 
-//Call DOM manipulation to control UI
+//Call displayTo on first land - pulls from web local storage APIm, if any
+displayToDo();
 
 //Click events for project creation and reverting
 let clickEventModule = (function() {
@@ -29,7 +30,3 @@ let clickEventModule = (function() {
     submitButton.addEventListener('click', createToDo);
 })();
 
-//const myToDo = createToDo("Grocery Run", "go get the groceries", "6/11/2023", "Low", "Grocery List");
-//const myToDo2 = createToDo("Homework", "Biology", "11/17/2023", "Medium", "Reminders");
-//console.log("show properties from index.js", myToDo);
-//console.log("show properties from index.js", myToDo2);

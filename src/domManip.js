@@ -50,7 +50,7 @@ export function addNotesList() {
 }
 
 export function clearForm() {
-    const nodeListNotes = document.querySelectorAll('li');
+    const nodeListNotes = document.querySelectorAll('.form-li');
     for (let i = 0; i < nodeListNotes.length; i++) {
         nodeListNotes[i].remove();
     }
@@ -59,9 +59,20 @@ export function clearForm() {
 
 export function displayToDo() {
 
+    //Gather data from local backend storage and initialize
+    let title = localStorage.getItem('Title');
+    let listType = localStorage.getItem('List-Type');
+    let dueDate = localStorage.getItem('DueDate');
+    let priority = localStorage.getItem('Priority');
+    let notes = localStorage.getItem('Notes');
+
+    //Check to ensure local storage is present to load, otherwise gracefully return out - avoid app crash
+    if (title == null || listType == null || dueDate == null || priority == null) {
+        return;
+    }
+
     //Check and clear current display DOM, if any
     const removeDivs = document.querySelectorAll('.card');
-    console.log('show me the node count of current DOM card divs...', removeDivs);
     for (let i = 0; i < removeDivs.length; i++) {
         removeDivs[i].remove();
     }
@@ -73,12 +84,16 @@ export function displayToDo() {
     card.classList.add('card');
     projects.appendChild(card);
 
-    //Gather data from local backend storage and initialize
-    let title = localStorage.getItem('Title');
-    let listType = localStorage.getItem('List-Type');
-    let dueDate = localStorage.getItem('DueDate');
-    let priority = localStorage.getItem('Priority');
-    let notes = localStorage.getItem('Notes');
+    //Create delete todo card button/event listener to remove from display
+    const deleteToDoButton = document.createElement('button');
+    deleteToDoButton.classList.add('remove-todo-button');
+    deleteToDoButton.textContent = 'Delete/Complete ToDo';
+    card.appendChild(deleteToDoButton);
+    deleteToDoButton.addEventListener('click', function deleteToDo() {
+        card.remove();
+        localStorage.clear();
+    });
+
 
     //Place data in local temp array and loop over key/value and display to DOM
     let _displayArray = {title, notes, dueDate, priority, listType};
@@ -90,4 +105,50 @@ export function displayToDo() {
         para.textContent = (`${key}: ${_displayArray[key]}`);
         card.appendChild(para);
     }
+    //DOM for noteslist items to present to left side display area
+    const para = document.querySelectorAll('p');
+    const notesListLabel = document.createElement('p');
+    notesListLabel.textContent = "Checklist Items (Click item when completed):";
+    const ul = document.createElement('ul');
+    notesListLabel.classList.add('notes-list-label');
+    para[para.length - 1].appendChild(ul);
+    ul.appendChild(notesListLabel);
+
+    console.log('show me the contents of notelist from local storage...', notes);
+    let _noteslistArray = notes.split(",");
+    console.log('contents of temp noteslistarray', _noteslistArray);
+
+    if (notes !== "") {
+        //Loop action
+        for (let i = 0; i < _noteslistArray.length; i++) {
+            console.log(_noteslistArray[i]);
+            const li = document.createElement('li');
+            li.className = 'display-li';
+            li.textContent = _noteslistArray[i];
+
+            //eventy
+            li.addEventListener('click', function strikeOut () {
+                if (li.classList.toggle('done')) {
+                    localStorage.setItem(li.textContent, 'true');
+                } else if (li.classList.toggle('display-li')) {
+                    localStorage.setItem(li.textContent, 'false');
+                }
+            });
+            ul.appendChild(li);
+        }
+    } else return;
+
+    //call on page refresh to check for existing strike throughs
+    window.onload = function() {
+        
+        //loop through current display li's on DOM and assign strike through CSS if local storage API flag is set
+        const liNodes = document.querySelectorAll('display-li');
+        liNodes.forEach(liNode => {
+            if (localStorage.getItem(liNode.textContent) == 'true') {
+                console.log('inside the onload if...');
+                liNode.className = 'done';
+            }
+        })
+    }
+
 }
